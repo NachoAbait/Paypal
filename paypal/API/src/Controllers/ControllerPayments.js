@@ -11,9 +11,28 @@ export const createOrder = async (req, res) => {
     intent: "CAPTURE",
     purchase_units: [
       {
+        items: [
+          {
+            name: producto.titulo,
+            quantity: "1",
+            description: "string",
+            sku: "string",
+            category: "DIGITAL_GOODS",
+            unit_amount: {
+              currency_code: "USD",
+              value: `${producto.precio}`,
+            },
+          },
+        ],
         amount: {
           currency_code: "USD",
           value: producto.precio,
+          breakdown: {
+            item_total: {
+              currency_code: "USD",
+              value: `${producto.precio}`,
+            },
+          },
         },
       },
     ],
@@ -73,5 +92,5 @@ export const captureOrden = async (req, res) => {
 };
 
 export const cancelOrder = (req, res) => {
-  res.redirect("/");
+  res.redirect("https://paypal-gilt.vercel.app/");
 };
