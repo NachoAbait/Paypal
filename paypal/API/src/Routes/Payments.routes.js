@@ -7,7 +7,7 @@ import {
 
 const router = Router();
 
-router.get("/create-orden", createOrder);
+router.post("/create-orden", createOrder);
 
 router.get("/capture-order", captureOrden);
 

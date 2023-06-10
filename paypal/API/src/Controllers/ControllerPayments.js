@@ -2,14 +2,18 @@ import { HOST, PAYPAL_API, PAYPAL_ID, PAYPAL_KEY } from "../config.js";
 import axios from "axios";
 
 export const createOrder = async (req, res) => {
+  const producto = req.body;
+  console.log("Este es el producto en createOrder");
+  console.log(producto);
+
   // CREAMOS LA ORDEN CON LOS PRODUCTOS
   const order = {
     intent: "CAPTURE",
     purchase_units: [
       {
         amount: {
-          currency_code: "ARS",
-          value: 6000,
+          currency_code: "USD",
+          value: producto.precio,
         },
       },
     ],
@@ -17,8 +21,8 @@ export const createOrder = async (req, res) => {
       brand_name: "Prueba Paypal",
       landing_page: "NO_PREFERENCE",
       user_action: "PAY_NOW",
-      return_url: `${HOST}/capture-order`,
-      cancel_url: `${HOST}/cancel-order`,
+      return_url: `http://localhost:3001/capture-order`,
+      cancel_url: `http://localhost:3001/cancel-order`,
     },
   };
 
@@ -42,14 +46,32 @@ export const createOrder = async (req, res) => {
     },
   });
 
-  console.log(response);
-  return res.json("Create-order");
+  return res.json(response.data);
 };
 
-export const captureOrden = (req, res) => {
-  res.json({ msg: "capture order" });
+export const captureOrden = async (req, res) => {
+  // sacamos el token que nos agg paypal automaticamente en la query al hacer el return_url
+  const { token } = req.query;
+
+  // ahora enviamos a paypal la confirmacion con ese token al siguiente link
+  const response = await axios.post(
+    `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
+    {},
+    {
+      auth: {
+        username:
+          "Ac5wmO2Z6zoS5MfHUnPD72ktLbw6Md6QHvFnu9QeW2O6kQyfCrAS3tLoIiLHs7XWcFzppzGVxs7smAjZ",
+        password:
+          "EFeGrVD8FA8lJNOIc8WXDs6jSGCZp0JiZhOszwWbHlnz67qrRysD8Ax2Y_itxmE4ErJ3VePQPQb1MHlj",
+      },
+    }
+  );
+
+  console.log(response);
+
+  return res.send("pagado");
 };
 
 export const cancelOrder = (req, res) => {
-  res.json({ msg: "cancel order" });
+  res.redirect("/");
 };

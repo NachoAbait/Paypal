@@ -38,6 +38,8 @@ export default function Card() {
   const dispatch = useDispatch();
 
   const init_endpoint = useSelector((state) => state.init_endpoint);
+  
+
 
   const handleClick = (producto) => {
     dispatch(cleanOrder());
