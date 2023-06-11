@@ -7,7 +7,7 @@ export function createOrder(producto) {
 
     try {
       var data = await axios.post(
-        `http://localhost:3001/create-orden`,
+        `/create-orden`,
         producto
       );
       console.log(data.data.links[1].href);
