@@ -58,7 +58,7 @@ export const createOrder = async (req, res) => {
     },
   });
 
-  // ENVIAMOS LA ORDEN CON EL PRODUCTO A PAYPAL
+  // ENVIAMOS LA ORDEN CON EL PRODUCTO A PAYPAL CON EL ACCESSTOKEN QUE NOS DA AL AUTENTICARNOS
   const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
     headers: {
       Authorization: `Bearer ${access_token}`,
@@ -67,6 +67,8 @@ export const createOrder = async (req, res) => {
 
   return res.json(response.data);
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////**/
 
 export const captureOrden = async (req, res) => {
   // sacamos el token que nos agg paypal automaticamente en la query al hacer el return_url
@@ -91,6 +93,8 @@ export const captureOrden = async (req, res) => {
   return res.send("pagado");
 };
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 export const cancelOrder = (req, res) => {
   res.redirect("https://paypal-gilt.vercel.app/");
 };
