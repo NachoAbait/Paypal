@@ -1,0 +1,117 @@
+
+.container{
+    background-color: blue;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 130px;
+    top: 30px;
+    overflow: hidden;
+}
+.container:hover{
+    cursor: pointer;
+}
+.btn{
+   border: none; 
+   background-color: blue;
+   width: 100%;
+   height: 100%;
+
+}
+.btn:hover{
+    cursor: pointer;
+}
+
+
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PopUp{
+    position: relative;
+    background-color: white;
+    width: 50%;
+    margin-top: 20px;
+    border: solid 3px black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tituloPopUp{
+    position: relative;
+    color: rgb(0, 0, 0);
+}
+
+.btnPopUp{
+    position: absolute;
+    right: 30px;
+    background-color: white;
+    border: solid ;
+    border-radius: 5px;
+    top: 25px;
+}
+.btnPopUp:hover{
+    cursor: pointer;
+}
+
+.list{
+  position: relative;
+  width: 100%;
+  display: flex-box;
+  align-items: center;
+}
+
+.imgPopUp{
+    height: 70px;
+    width: 70px;
+    margin-right: 20px;
+}
+
+.infoProduct{
+ display: flex;
+}
+.btnCant{
+    height:20px ;
+    margin:10px
+}
+
+li h3{
+    margin-right: 40px;
+}
+
+ul {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li{
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.btnEliminar{
+    margin-left: 25px;
+}
+
+.btnMP{
+    background-color: #4287F5;
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+.btnMP:hover{
+    cursor: pointer;
+}

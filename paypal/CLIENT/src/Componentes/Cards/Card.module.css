@@ -5,7 +5,7 @@
   margin: 40px;
   border-radius: 10px;
   overflow: hidden;
-  border: solid 2px rgb(24, 24, 165);
+  border: solid 2px blue;
   margin-top: 180px;
 }
 
@@ -28,7 +28,7 @@
 
 .boton {
   margin-bottom: 10px;
-  background-color: rgb(7, 167, 207);
+  background-color:blue;
   border-radius: 5px;
   cursor: pointer;
   height: 30px;
@@ -36,7 +36,7 @@
 }
 
 .mp {
-  background-color: aqua;
+  background-color: blue;
   width: 15%;
   height: 120px;
   margin: auto;
@@ -44,7 +44,7 @@
   top: 100px;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 0;
   border-radius: 10px;
   overflow: hidden;
 }
