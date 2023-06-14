@@ -6,31 +6,36 @@ export const createOrder = async (req, res) => {
   console.log("Este es el producto en createOrder");
   console.log(producto);
 
+  const total = producto.reduce((acc, producto) => {
+    return acc + producto.precio * producto.cantidad;
+  }, 0);
+
   // CREAMOS LA ORDEN CON LOS PRODUCTOS
   const order = {
     intent: "CAPTURE",
     purchase_units: [
       {
-        items: [
-          {
-            name: producto.titulo,
-            quantity: "1",
+        items: producto.map((product) => {
+          return {
+            name: product.titulo,
+            quantity: `${product.cantidad}`,
             description: "string",
             sku: "string",
             category: "DIGITAL_GOODS",
             unit_amount: {
               currency_code: "USD",
-              value: `${producto.precio}`,
+              value: `${product.precio}`,
             },
-          },
-        ],
+          };
+        }),
+
         amount: {
           currency_code: "USD",
-          value: producto.precio,
+          value: `${total}`,
           breakdown: {
             item_total: {
               currency_code: "USD",
-              value: `${producto.precio}`,
+              value: `${total}`,
             },
           },
         },
